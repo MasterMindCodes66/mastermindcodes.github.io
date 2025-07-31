@@ -4,26 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasterMind Codes - Documentos Clasificados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
-            color: #fff;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #0c0c1a, #151528, #0f1729);
+            color: #e0e0ff;
+            line-height: 1.7;
             overflow-x: hidden;
+            position: relative;
         }
-
-          .price, .guarantee, .paypal-container, h1, h2, h3, p, a, span, div {
-    writing-mode: initial !important;
-    transform: none !important;
-    text-orientation: initial !important;
-  }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
         
         .container {
             max-width: 1200px;
@@ -31,273 +40,638 @@
             padding: 0 20px;
         }
         
+        /* Header */
         header {
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 25, 0.95);
+            backdrop-filter: blur(12px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             padding: 15px 0;
             border-bottom: 1px solid #d4af37;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 26px;
+            font-weight: 800;
             color: #d4af37;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 22px;
         }
         
         .classified {
-            background: #d4af37;
+            background: linear-gradient(45deg, #d4af37, #f0c050);
             color: #000;
-            padding: 5px 15px;
-            font-size: 12px;
+            padding: 7px 18px;
+            font-size: 13px;
             font-weight: bold;
-            border-radius: 3px;
+            border-radius: 30px;
             animation: pulse 2s infinite;
+            letter-spacing: 1px;
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.03); }
         }
         
+        /* Hero Section */
         .hero {
-            padding: 120px 0 80px;
+            padding: 140px 0 80px;
             text-align: center;
-            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1), transparent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            z-index: -1;
         }
         
         .hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #d4af37, #fff);
+            font-size: 3.8rem;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #d4af37, #f8f8f8, #d4af37);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            line-height: 1.2;
+            letter-spacing: -1px;
         }
         
         .hero .subtitle {
-            font-size: 1.3em;
+            font-size: 1.4rem;
             margin-bottom: 30px;
-            color: #ccc;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            color: #a0a0d0;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
         }
         
-        .countdown {
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid #d4af37;
-            padding: 20px;
+        .hero .subtitle em {
+            color: #d4af37;
+            font-style: normal;
+            font-weight: 600;
+        }
+        
+        /* Warning */
+        .warning {
+            background: rgba(200, 0, 0, 0.15);
+            border: 1px solid #ff5555;
+            padding: 25px;
             margin: 40px auto;
-            max-width: 500px;
+            max-width: 800px;
             border-radius: 10px;
             text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.1);
+            animation: warning-pulse 3s infinite;
+        }
+        
+        @keyframes warning-pulse {
+            0%, 100% { border-color: #ff5555; }
+            50% { border-color: #ff9999; }
+        }
+        
+        .warning h3 {
+            color: #ff7777;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .warning p {
+            color: #ffaaaa;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        /* Countdown */
+        .countdown {
+            background: rgba(30, 30, 50, 0.6);
+            border: 2px solid #d4af37;
+            padding: 30px 20px;
+            margin: 40px auto;
+            max-width: 600px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
         .countdown h3 {
             color: #d4af37;
-            margin-bottom: 15px;
-            font-size: 1.5em;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-
-          .paypal-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
+        
         .timer {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            font-size: 2em;
+            gap: 25px;
+            font-size: 2.2rem;
             font-weight: bold;
+            flex-wrap: wrap;
         }
         
         .time-unit {
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-width: 90px;
+            padding: 15px;
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .time-unit span:first-child {
-            font-size: 1.5em;
+            font-size: 2.5rem;
             color: #d4af37;
+            font-weight: 800;
+            margin-bottom: 5px;
         }
         
         .time-unit span:last-child {
-            font-size: 0.5em;
-            color: #ccc;
-            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #a0a0d0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
         
+        /* Codes Preview */
         .codes-preview {
-            padding: 80px 0;
-            background: rgba(0,0,0,0.3);
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center; 
+            font-size: 2.8rem; 
+            margin-bottom: 20px; 
+            color: #d4af37;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 30px;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center; 
+            color: #a0a0d0; 
+            font-size: 1.3rem; 
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
         }
         
         .codes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 35px;
             margin-top: 50px;
         }
         
         .code-card {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0,0,0,0.5));
-            border: 1px solid #d4af37;
-            padding: 30px;
-            border-radius: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(135deg, rgba(40, 40, 70, 0.5), rgba(15, 15, 35, 0.8));
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 35px 30px;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
         .code-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25);
+            border-color: rgba(212, 175, 55, 0.7);
+        }
+        
+        .code-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            z-index: -1;
         }
         
         .code-number {
-            font-size: 3em;
-            color: #d4af37;
-            font-weight: bold;
-            opacity: 0.3;
-            float: right;
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 5rem;
+            color: rgba(212, 175, 55, 0.15);
+            font-weight: 900;
             line-height: 1;
+            z-index: -1;
         }
         
         .code-card h3 {
             color: #d4af37;
-            margin-bottom: 15px;
-            font-size: 1.3em;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            line-height: 1.4;
+            min-height: 70px;
         }
         
         .code-card p {
-            color: #ccc;
+            color: #c0c0e0;
             line-height: 1.8;
+            font-size: 1.1rem;
         }
         
-        .cta-section {
-            padding: 80px 0;
-            text-align: center;
-            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1), transparent);
-        }
-        
-        .price {
-            font-size: 4em;
-            color: #d4af37;
-            font-weight: bold;
-            margin: 30px 0;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
-        
-        .original-price {
-            font-size: 1.5em;
-            color: #666;
-            text-decoration: line-through;
-            margin-right: 20px;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #d4af37, #b8941f);
-            color: #000;
-            padding: 20px 40px;
-            font-size: 1.3em;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 10px;
-            margin: 30px 0;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
-        }
-        
-        .guarantee {
-            background: rgba(0,0,0,0.5);
-            border: 1px solid #d4af37;
-            padding: 20px;
-            margin: 40px auto;
-            max-width: 600px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
+        /* Testimonials */
         .testimonials {
-            padding: 80px 0;
-            background: rgba(0,0,0,0.2);
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .testimonials::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(212,175,55,0.05)" stroke-width="2"/></svg>');
+            background-size: 100px;
+            opacity: 0.3;
+            z-index: -1;
         }
         
         .testimonial {
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(30, 30, 50, 0.6);
             border-left: 4px solid #d4af37;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 5px;
+            padding: 35px;
+            margin: 35px 0;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateX(10px);
         }
         
         .testimonial blockquote {
             font-style: italic;
-            font-size: 1.1em;
-            margin-bottom: 15px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #e0e0ff;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .testimonial blockquote::before {
+            content: """;
+            position: absolute;
+            left: 0;
+            top: -20px;
+            font-size: 5rem;
+            color: rgba(212, 175, 55, 0.3);
+            font-family: Georgia, serif;
+            line-height: 1;
         }
         
         .testimonial cite {
             color: #d4af37;
             font-weight: bold;
+            font-style: normal;
+            display: block;
+            text-align: right;
+            font-size: 1.1rem;
         }
         
-        footer {
-            background: #000;
-            padding: 40px 0;
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
             text-align: center;
-            border-top: 1px solid #333;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1), transparent);
         }
         
-        .warning {
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid #ff6b6b;
-            padding: 20px;
-            margin: 40px auto;
-            max-width: 800px;
+        .price {
+            font-size: 5rem;
+            color: #d4af37;
+            font-weight: 800;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .original-price {
+            font-size: 2rem;
+            color: #888;
+            text-decoration: line-through;
+            position: relative;
+            top: -10px;
+        }
+        
+        .price-info {
+            font-size: 1.4rem;
+            color: #a0a0d0;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+        
+        .price-info strong {
+            color: #d4af37;
+            font-weight: 600;
+        }
+        
+        .buy-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px 0;
+            gap: 25px;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #d4af37, #c9a22d);
+            color: #000;
+            padding: 22px 50px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            border: none;
+            cursor: pointer;
+            gap: 12px;
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.6);
+            background: linear-gradient(45deg, #e0b840, #d4af37);
+        }
+        
+        .cta-button i {
+            font-size: 1.6rem;
+        }
+        
+        .guarantee {
+            background: rgba(20, 20, 40, 0.7);
+            border: 2px solid #d4af37;
+            padding: 30px;
+            margin: 50px auto;
+            max-width: 700px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .guarantee h3 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-size: 1.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .guarantee p {
+            color: #c0c0e0;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        .copies-remaining {
+            color: #ff7777;
+            font-weight: 800; 
+            margin-top: 40px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: rgba(200, 0, 0, 0.15);
+            border-radius: 30px;
+            max-width: 500px;
+            margin: 40px auto 0;
+        }
+        
+        /* PayPal Container - SOLUCIÓN AL PROBLEMA */
+        .paypal-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            min-height: 50px;
+            margin-top: 20px;
+            background: rgba(30, 30, 50, 0.6);
             border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Fuerza orientación horizontal para el botón PayPal */
+        #paypal-container-EVFGUWWR9JRJ6 {
+            transform: rotate(0deg) !important;
+            writing-mode: horizontal-tb !important;
+            min-width: 200px !important;
+            min-height: 50px !important;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        #paypal-container-EVFGUWWR9JRJ6 iframe {
+            transform: rotate(0deg) !important;
+            writing-mode: horizontal-tb !important;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(5, 5, 15, 0.95);
+            padding: 50px 0 30px;
             text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
         }
         
-        .warning h3 {
-            color: #ff6b6b;
-            margin-bottom: 10px;
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
         }
         
-        @media (max-width: 768px) {
+        footer p {
+            color: #777;
+            margin: 5px 0;
+            font-size: 0.95rem;
+        }
+        
+        footer p:first-child {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #999;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
             .hero h1 {
-                font-size: 2.5em;
+                font-size: 3rem;
             }
             
-            .timer {
-                font-size: 1.5em;
+            .section-title {
+                font-size: 2.3rem;
             }
             
             .codes-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
             
             .price {
-                font-size: 3em;
+                font-size: 4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timer {
+                font-size: 1.8rem;
+                gap: 15px;
+            }
+            
+            .time-unit {
+                min-width: 75px;
+                padding: 12px;
+            }
+            
+            .time-unit span:first-child {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .price {
+                font-size: 3.5rem;
+            }
+            
+            .cta-button {
+                padding: 20px;
+                font-size: 1.2rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .timer {
+                gap: 10px;
+            }
+            
+            .time-unit {
+                min-width: 70px;
+                padding: 10px;
+            }
+            
+            .time-unit span:first-child {
+                font-size: 1.8rem;
+            }
+            
+            .time-unit span:last-child {
+                font-size: 0.8rem;
+            }
+            
+            .price {
+                font-size: 3rem;
+            }
+            
+            .original-price {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -306,7 +680,9 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">MasterMind Codes</a></div>
+                <a href="#" class="logo">
+                    <i class="fas fa-brain"></i>MasterMind Codes
+                </a>
                 <div class="classified">DOCUMENTO CLASIFICADO</div>
             </div>
         </div>
@@ -319,12 +695,12 @@
             <em>Por primera vez filtrado al público general</em></p>
             
             <div class="warning">
-                <h3>⚠️ ADVERTENCIA LEGAL</h3>
+                <h3><i class="fas fa-exclamation-triangle"></i> ADVERTENCIA LEGAL</h3>
                 <p>Este documento será eliminado permanentemente en 48 horas por orden del Consejo Directivo. Una vez removido, no habrá segunda oportunidad de acceso.</p>
             </div>
             
             <div class="countdown">
-                <h3>🔥 ACCESO TERMINA EN:</h3>
+                <h3><i class="fas fa-fire"></i> ACCESO TERMINA EN:</h3>
                 <div class="timer" id="countdown">
                     <div class="time-unit">
                         <span id="hours">47</span>
@@ -345,8 +721,8 @@
 
     <section class="codes-preview">
         <div class="container">
-            <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 20px; color: #d4af37;">LAS 6 LLAVES MAESTRAS REVELADAS</h2>
-            <p style="text-align: center; color: #ccc; font-size: 1.2em; margin-bottom: 50px;">Cada una de estas llaves ha generado millones en manos expertas</p>
+            <h2 class="section-title">LAS 6 LLAVES MAESTRAS REVELADAS</h2>
+            <p class="section-subtitle">Cada una de estas llaves ha generado millones en manos expertas</p>
             
             <div class="codes-grid">
                 <div class="code-card">
@@ -390,7 +766,7 @@
 
     <section class="testimonials">
         <div class="container">
-            <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 50px; color: #d4af37;">LO QUE DICEN LOS PRIMEROS IMPLEMENTADORES</h2>
+            <h2 class="section-title">LO QUE DICEN LOS PRIMEROS IMPLEMENTADORES</h2>
             
             <div class="testimonial">
                 <blockquote>"El Principio de Asimetría me ayudó a identificar una oportunidad de $847K que literalmente nadie más vio. Ahora entiendo por qué las élites guardan estos secretos."</blockquote>
@@ -411,83 +787,133 @@
 
     <section class="cta-section">
         <div class="container">
-            <h2 style="font-size: 2.5em; margin-bottom: 30px;">ACCESO ÚNICO DE FILTRACIÓN</h2>
+            <h2 class="section-title">ACCESO ÚNICO DE FILTRACIÓN</h2>
             
             <div class="price">
-                <span class="original-price">$497</span>$97
+                <span class="original-price">$497</span>
+                <span>$97</span>
             </div>
             
-            <p style="font-size: 1.3em; color: #ccc; margin-bottom: 30px;">
-                Precio de Consultoría Normal: $10,000+<br>
-                <strong style="color: #d4af37;">Oferta de Filtración (48h únicamente): $97</strong>
+            <p class="price-info">
+                Precio de Consultoría Normal: <strong>$10,000+</strong><br>
+                <strong>Oferta de Filtración (48h únicamente): $97</strong>
             </p>
             
-<div style="text-align:center;"><a href="javascript:void(0);" class="cta-button" style="pointer-events: none; cursor: default;">
-  🔒 ACCESO INMEDIATO - $97
-</a>
-<script 
-  src="https://www.paypal.com/sdk/js?client-id=BAA6u-7YtTHIDHGJdtsu4842YkZ0_32Z4anA1asSfHo7GG8hGIhvOCXpU3DwfZuuMLSZ1W5ISKClXWRo4o&components=hosted-buttons&disable-funding=venmo&currency=USD">
-</script>
-
-            <div class="paypal-container"><div id="paypal-container-EVFGUWWR9JRJ6"></div></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "EVFGUWWR9JRJ6",
-  }).render("#paypal-container-EVFGUWWR9JRJ6")
-</script>
+            <div class="buy-section">
+                <button class="cta-button">
+                    <i class="fas fa-lock"></i> ACCESO INMEDIATO - $97
+                </button>
+                
+                <div class="paypal-container">
+                    <div id="paypal-container-EVFGUWWR9JRJ6"></div>
+                </div>
+            </div>
             
             <div class="guarantee">
-                <h3 style="color: #d4af37; margin-bottom: 15px;">🛡️ GARANTÍA BLINDADA</h3>
+                <h3><i class="fas fa-shield-alt"></i> GARANTÍA BLINDADA</h3>
                 <p>Si estos códigos no cambian tu perspectiva en 7 días, te devolvemos el DOBLE de tu inversión. Sin preguntas.</p>
             </div>
             
-            <p style="color: #ff6b6b; font-weight: bold; margin-top: 30px;">
-                ⚠️ ÚLTIMO AVISO: Solo quedan <span id="copies">23</span> copias disponibles de las 100 autorizadas.
-            </p>
+            <div class="copies-remaining">
+                <i class="fas fa-exclamation-circle"></i> ÚLTIMO AVISO: Solo quedan <span id="copies">23</span> copias disponibles de las 100 autorizadas.
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
             <p>&copy; 2024 MasterMind Codes - Círculo de las Mentes Maestras</p>
-            <p style="color: #666; margin-top: 10px;">Documento Clasificado - Nivel Alpha - Distribución Controlada</p>
+            <p>Documento Clasificado - Nivel Alpha - Distribución Controlada</p>
         </div>
     </footer>
 
+    <!-- PayPal SDK -->
+    <script 
+        src="https://www.paypal.com/sdk/js?client-id=BAA6u-7YtTHIDHGJdtsu4842YkZ0_32Z4anA1asSfHo7GG8hGIhvOCXpU3DwfZuuMLSZ1W5ISKClXWRo4o&components=hosted-buttons&disable-funding=venmo&currency=USD">
+    </script>
+    
     <script>
+        // PayPal Button Rendering
+        function initPayPalButton() {
+            if (typeof paypal === 'undefined') {
+                setTimeout(initPayPalButton, 300);
+                return;
+            }
+            
+            paypal.HostedButtons({
+                hostedButtonId: "EVFGUWWR9JRJ6",
+            }).render("#paypal-container-EVFGUWWR9JRJ6");
+        }
+        
+        // Initialize PayPal button
+        if (window.paypal && window.paypal.HostedButtons) {
+            initPayPalButton();
+        } else {
+            window.addEventListener('load', initPayPalButton);
+        }
+
         // Countdown timer
         function updateCountdown() {
             const now = new Date().getTime();
             const end = now + (48 * 60 * 60 * 1000); // 48 hours from now
             
-            setInterval(function() {
+            const updateTimer = function() {
                 const now = new Date().getTime();
                 const distance = end - now;
+                
+                if (distance < 0) {
+                    document.getElementById("countdown").innerHTML = "<div class='time-unit' style='grid-column: span 3; padding: 20px;'><span>ACCESO TERMINADO</span></div>";
+                    return;
+                }
                 
                 const hours = Math.floor(distance / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 
-                document.getElementById("hours").innerHTML = hours;
-                document.getElementById("minutes").innerHTML = minutes;
-                document.getElementById("seconds").innerHTML = seconds;
-                
-                if (distance < 0) {
-                    document.getElementById("countdown").innerHTML = "ACCESO TERMINADO";
-                }
-            }, 1000);
+                document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+            };
+            
+            // Update immediately
+            updateTimer();
+            // Then update every second
+            setInterval(updateTimer, 1000);
         }
-        
-        updateCountdown();
         
         // Simulate decreasing copies
         let copies = 23;
-        setInterval(function() {
+        function updateCopies() {
             if (copies > 5) {
                 copies--;
-                document.getElementById("copies").innerHTML = copies;
+                document.getElementById("copies").textContent = copies;
             }
-        }, 45000); // Decrease every 45 seconds
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCountdown();
+            setInterval(updateCopies, 60000); // Update every minute
+            
+            // Add functionality to the CTA button
+            document.querySelector('.cta-button').addEventListener('click', function() {
+                // Scroll to PayPal button
+                document.getElementById('paypal-container-EVFGUWWR9JRJ6').scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Highlight PayPal button
+                const container = document.querySelector('.paypal-container');
+                container.style.transition = 'all 0.5s';
+                container.style.boxShadow = '0 0 25px rgba(212, 175, 55, 0.7)';
+                container.style.borderColor = '#d4af37';
+                
+                setTimeout(() => {
+                    container.style.boxShadow = 'none';
+                    container.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                }, 2000);
+            });
+        });
     </script>
 </body>
 </html>
