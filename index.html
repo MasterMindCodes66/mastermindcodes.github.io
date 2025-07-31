@@ -103,7 +103,12 @@
             margin-bottom: 15px;
             font-size: 1.5em;
         }
-        
+
+          .paypal-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
         .timer {
             display: flex;
             justify-content: center;
@@ -411,13 +416,13 @@
                 <strong style="color: #d4af37;">Oferta de Filtración (48h únicamente): $97</strong>
             </p>
             
-            <a href="#" class="cta-button" onclick="alert('Aquí conectarías con tu sistema de pago (PayPal, Stripe, etc.)')">
-                🔒 ACCESO INMEDIATO - $97
-            </a>
+<a href="javascript:void(0);" class="cta-button">
+  🔒 ACCESO INMEDIATO - $97
+</a>
 <script 
   src="https://www.paypal.com/sdk/js?client-id=BAA6u-7YtTHIDHGJdtsu4842YkZ0_32Z4anA1asSfHo7GG8hGIhvOCXpU3DwfZuuMLSZ1W5ISKClXWRo4o&components=hosted-buttons&disable-funding=venmo&currency=USD">
 </script>
-            <div id="paypal-container-EVFGUWWR9JRJ6"></div>
+            <div id="paypal-container-EVFGUuWvR9JRJ6" class="paypal-container"></div>
 <script>
   paypal.HostedButtons({
     hostedButtonId: "EVFGUWWR9JRJ6",
