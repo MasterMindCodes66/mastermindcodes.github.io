@@ -18,6 +18,12 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+
+          .price, .guarantee, .paypal-container, h1, h2, h3, p, a, span, div {
+    writing-mode: initial !important;
+    transform: none !important;
+    text-orientation: initial !important;
+  }
         
         .container {
             max-width: 1200px;
@@ -300,7 +306,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">MasterMind Codes</a>
+                <a href="#" class="logo">MasterMind Codes</a></div>
                 <div class="classified">DOCUMENTO CLASIFICADO</div>
             </div>
         </div>
@@ -416,14 +422,14 @@
                 <strong style="color: #d4af37;">Oferta de Filtración (48h únicamente): $97</strong>
             </p>
             
-<a href="javascript:void(0);" class="cta-button">
+<div style="text-align:center;"><a href="javascript:void(0);" class="cta-button" style="pointer-events: none; cursor: default;">
   🔒 ACCESO INMEDIATO - $97
 </a>
 <script 
   src="https://www.paypal.com/sdk/js?client-id=BAA6u-7YtTHIDHGJdtsu4842YkZ0_32Z4anA1asSfHo7GG8hGIhvOCXpU3DwfZuuMLSZ1W5ISKClXWRo4o&components=hosted-buttons&disable-funding=venmo&currency=USD">
 </script>
 
-            <div id="paypal-container-EVFGUWWR9JRJ6" class="paypal-container"> </div>
+            <div class="paypal-container"><div id="paypal-container-EVFGUWWR9JRJ6"></div></div>
 <script>
   paypal.HostedButtons({
     hostedButtonId: "EVFGUWWR9JRJ6",
