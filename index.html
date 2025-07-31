@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterMind Codes - Documentos Clasificados</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid #d4af37;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d4af37;
+            text-decoration: none;
+        }
+        
+        .classified {
+            background: #d4af37;
+            color: #000;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 3px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1), transparent);
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #d4af37, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            color: #ccc;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .countdown {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #d4af37;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 500px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .countdown h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .time-unit span:first-child {
+            font-size: 1.5em;
+            color: #d4af37;
+        }
+        
+        .time-unit span:last-child {
+            font-size: 0.5em;
+            color: #ccc;
+            margin-top: 5px;
+        }
+        
+        .codes-preview {
+            padding: 80px 0;
+            background: rgba(0,0,0,0.3);
+        }
+        
+        .codes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .code-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0,0,0,0.5));
+            border: 1px solid #d4af37;
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .code-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .code-number {
+            font-size: 3em;
+            color: #d4af37;
+            font-weight: bold;
+            opacity: 0.3;
+            float: right;
+            line-height: 1;
+        }
+        
+        .code-card h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .code-card p {
+            color: #ccc;
+            line-height: 1.8;
+        }
+        
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1), transparent);
+        }
+        
+        .price {
+            font-size: 4em;
+            color: #d4af37;
+            font-weight: bold;
+            margin: 30px 0;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .original-price {
+            font-size: 1.5em;
+            color: #666;
+            text-decoration: line-through;
+            margin-right: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #d4af37, #b8941f);
+            color: #000;
+            padding: 20px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+        }
+        
+        .guarantee {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #d4af37;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .testimonials {
+            padding: 80px 0;
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .testimonial {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid #d4af37;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+        
+        .testimonial blockquote {
+            font-style: italic;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial cite {
+            color: #d4af37;
+            font-weight: bold;
+        }
+        
+        footer {
+            background: #000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        
+        .warning {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff6b6b;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .warning h3 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .timer {
+                font-size: 1.5em;
+            }
+            
+            .codes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">MasterMind Codes</a>
+                <div class="classified">DOCUMENTO CLASIFICADO</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>LOS CÓDIGOS OCULTOS DEL ÉXITO</h1>
+            <p class="subtitle">Manual Clasificado del Círculo de las Mentes Maestras<br>
+            <em>Por primera vez filtrado al público general</em></p>
+            
+            <div class="warning">
+                <h3>⚠️ ADVERTENCIA LEGAL</h3>
+                <p>Este documento será eliminado permanentemente en 48 horas por orden del Consejo Directivo. Una vez removido, no habrá segunda oportunidad de acceso.</p>
+            </div>
+            
+            <div class="countdown">
+                <h3>🔥 ACCESO TERMINA EN:</h3>
+                <div class="timer" id="countdown">
+                    <div class="time-unit">
+                        <span id="hours">47</span>
+                        <span>HORAS</span>
+                    </div>
+                    <div class="time-unit">
+                        <span id="minutes">59</span>
+                        <span>MINUTOS</span>
+                    </div>
+                    <div class="time-unit">
+                        <span id="seconds">59</span>
+                        <span>SEGUNDOS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="codes-preview">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 20px; color: #d4af37;">LAS 6 LLAVES MAESTRAS REVELADAS</h2>
+            <p style="text-align: center; color: #ccc; font-size: 1.2em; margin-bottom: 50px;">Cada una de estas llaves ha generado millones en manos expertas</p>
+            
+            <div class="codes-grid">
+                <div class="code-card">
+                    <div class="code-number">01</div>
+                    <h3>EL PRINCIPIO DE LA ASIMETRÍA INVISIBLE</h3>
+                    <p>Mientras otros compiten por recursos visibles, los maestros crean valor donde nadie más puede verlo. Incluye el Método 3-6-9 y casos reales de $50K+ generados.</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-number">02</div>
+                    <h3>LA ARQUITECTURA DE LA INFLUENCIA SILENCIOSA</h3>
+                    <p>El poder verdadero no se ejerce, se irradia. Protocolo de Siembra Mental y técnicas de persuasión que operan bajo el radar de la consciencia.</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-number">03</div>
+                    <h3>EL CÓDIGO TEMPORAL DE LOS CICLOS MAESTROS</h3>
+                    <p>Los 7 Ciclos Ocultos que gobiernan mercados y oportunidades. Aprende a surfear las ondas del tiempo en lugar de reaccionar a eventos.</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-number">04</div>
+                    <h3>LA ALQUIMIA DE LOS RECURSOS INFINITOS</h3>
+                    <p>La fórmula secreta para convertir atención en autoridad, autoridad en acceso, y acceso en activos que se multiplican exponencialmente.</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-number">05</div>
+                    <h3>EL PROTOCOLO DE LA INVISIBILIDAD ESTRATÉGICA</h3>
+                    <p>Cómo construir imperios de $100M+ sin aparecer en listas Forbes. El arte de obtener crédito sin crear envidias destructivas.</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-number">06</div>
+                    <h3>LA MAESTRÍA DE LA REINVENCIÓN PERPETUA</h3>
+                    <p>Identidad Líquida y Arquitectura de Antifragilidad. Sistemas que convierten cada crisis en una catapulta hacia el siguiente nivel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 50px; color: #d4af37;">LO QUE DICEN LOS PRIMEROS IMPLEMENTADORES</h2>
+            
+            <div class="testimonial">
+                <blockquote>"El Principio de Asimetría me ayudó a identificar una oportunidad de $847K que literalmente nadie más vio. Ahora entiendo por qué las élites guardan estos secretos."</blockquote>
+                <cite>- M.R., CEO Tech Startup</cite>
+            </div>
+            
+            <div class="testimonial">
+                <blockquote>"Después de aplicar el Código Temporal, anticipé el boom de la IA 8 meses antes que la competencia. Resultado: 3 contratos de $200K cada uno."</blockquote>
+                <cite>- C.L., Consultor Estratégico</cite>
+            </div>
+            
+            <div class="testimonial">
+                <blockquote>"La Arquitectura de Influencia Silenciosa cambió todo. Ahora las oportunidades me buscan a mí, no al revés."</blockquote>
+                <cite>- A.K., Inversionista</cite>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 style="font-size: 2.5em; margin-bottom: 30px;">ACCESO ÚNICO DE FILTRACIÓN</h2>
+            
+            <div class="price">
+                <span class="original-price">$497</span>$97
+            </div>
+            
+            <p style="font-size: 1.3em; color: #ccc; margin-bottom: 30px;">
+                Precio de Consultoría Normal: $10,000+<br>
+                <strong style="color: #d4af37;">Oferta de Filtración (48h únicamente): $97</strong>
+            </p>
+            
+            <a href="#" class="cta-button" onclick="alert('Aquí conectarías con tu sistema de pago (PayPal, Stripe, etc.)')">
+                🔒 ACCESO INMEDIATO - $97
+            </a>
+            
+            <div class="guarantee">
+                <h3 style="color: #d4af37; margin-bottom: 15px;">🛡️ GARANTÍA BLINDADA</h3>
+                <p>Si estos códigos no cambian tu perspectiva en 7 días, te devolvemos el DOBLE de tu inversión. Sin preguntas.</p>
+            </div>
+            
+            <p style="color: #ff6b6b; font-weight: bold; margin-top: 30px;">
+                ⚠️ ÚLTIMO AVISO: Solo quedan <span id="copies">23</span> copias disponibles de las 100 autorizadas.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MasterMind Codes - Círculo de las Mentes Maestras</p>
+            <p style="color: #666; margin-top: 10px;">Documento Clasificado - Nivel Alpha - Distribución Controlada</p>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown timer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const end = now + (48 * 60 * 60 * 1000); // 48 hours from now
+            
+            setInterval(function() {
+                const now = new Date().getTime();
+                const distance = end - now;
+                
+                const hours = Math.floor(distance / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+                
+                if (distance < 0) {
+                    document.getElementById("countdown").innerHTML = "ACCESO TERMINADO";
+                }
+            }, 1000);
+        }
+        
+        updateCountdown();
+        
+        // Simulate decreasing copies
+        let copies = 23;
+        setInterval(function() {
+            if (copies > 5) {
+                copies--;
+                document.getElementById("copies").innerHTML = copies;
+            }
+        }, 45000); // Decrease every 45 seconds
+    </script>
+</body>
+</html>
